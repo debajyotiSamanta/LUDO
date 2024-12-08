@@ -8,9 +8,27 @@
     <link rel="stylesheet" href="./ludo/style.css">
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="ludo bg music.mp3" type="audio/mp3">
-    </audio>
+    <header>
+        <nav>
+            <div class="heading">
+                <h1>Welcome to Ludo Multiplayer Game</h1>
+            </div>
+            <div class="Rules">
+                <h3>: Basic Ludo Rules :</h3>
+                <p>1.Objective: Move all 4 pieces from your starting area to the home. <br>
+                   2.Starting: <br>
+                   (a) Roll a 6 to move a piece out of the home area. <br>
+                   (b) Rolling a 6 gives an extra turn. <br>
+                   3.Movement: <br>
+                   (a) Pieces move clockwise based on dice rolls. <br>
+                   (b) Land on an opponent’s piece to send it back to their home. <br>
+                   4.Safe Positions: Star-marked positions and starting starting are safe zones where pieces cannot be captured. <br>
+                   5.Entering Home: Pieces must complete a circuit and enter the home triangle with an exact roll. <br>
+                   6.Winning: First to get all 4 tokens home wins.
+                </p>
+            </div>
+        </nav>
+    </header>
     <div class="ludo-container">
         <div class="ludo">
             <div class="player-pieces">
@@ -49,9 +67,18 @@
                 <button id="reset-btn" class="btn btn-reset">Reset</button>
             </div>
             <h2 class="active-player">Active Player: <span></span> </h2>
+            <audio id="background-music" src="ludo/ludo bg music.mp3" autoplay loop muted></audio>
         </div>
     </div>
-
+    <script>
+        document.body.addEventListener('click', () => {
+            const audio = document.getElementById('background-music');
+            if (audio.muted) {
+                audio.muted = false;
+                audio.play(); 
+            }
+        });
+    </script>
     <script src="./main.js" type="module"></script>
 </body>
 </html>

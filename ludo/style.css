@@ -2,6 +2,104 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* header {
+    background:#a49999
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}  */
+
+header .heading h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #c80dc2,#18aa4b, #0c54db,#c80dc2, #116b14, #2196f3, #9c27b0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientAnimation 5s infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+nav .Rules {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+nav .Rules h3 {
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;
+    margin-bottom: 15px;
+    border-bottom: 2px solid black;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+nav .Rules h3 {
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* Adjust height as needed */
+    border-bottom: 2px solid black;
+}
+
+nav .Rules p {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0;
+    text-align: justify;
+    color: black;
+}
+
+nav .Rules p br {
+    margin: 10px;
+}
+
+nav .Rules p span {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+nav .Rules p {
+    padding: 20px;
+}
+
+nav .Rules:hover {
+    transform: scale(1.02);
+    transition: 0.3s ease;
+}
+
 .ludo-container {
     width: 450px;
     margin: 20px auto;  
@@ -136,9 +234,19 @@ body{
     font-weight: bold;
 }
 
-.footer {
+.footer .active-player {
+    font-size: 1.8rem;
+    color: #151615; 
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.footer .active-player span {
+    color: #000000; 
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 #reset-btn{
