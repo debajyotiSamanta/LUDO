@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ludo/style.css">
+</head>
+<body>
+    <div class="ludo-container">
+        <div class="ludo">
+            <div class="player-pieces">
+                <div class="player-piece" player-id="BLUE" piece="0"></div>
+                <div class="player-piece" player-id="BLUE" piece="1"></div>
+                <div class="player-piece" player-id="BLUE" piece="2"></div>
+                <div class="player-piece" player-id="BLUE" piece="3"></div>
+                
+                <div class="player-piece" player-id="GREEN" piece="0"></div>
+                <div class="player-piece" player-id="GREEN" piece="1"></div>
+                <div class="player-piece" player-id="GREEN" piece="2"></div>
+                <div class="player-piece" player-id="GREEN" piece="3"></div>
+
+                <div class="player-piece" player-id="YELLOW" piece="0"></div>
+                <div class="player-piece" player-id="YELLOW" piece="1"></div>
+                <div class="player-piece" player-id="YELLOW" piece="2"></div>
+                <div class="player-piece" player-id="YELLOW" piece="3"></div>
+
+                <div class="player-piece" player-id="RED" piece="0"></div>
+                <div class="player-piece" player-id="RED" piece="1"></div>
+                <div class="player-piece" player-id="RED" piece="2"></div>
+                <div class="player-piece" player-id="RED" piece="3"></div>
+            </div>
+
+            <div class="player-bases">
+                <div class="player-base" player-id="BLUE"></div>
+                <div class="player-base" player-id="GREEN"></div>
+                <div class="player-base" player-id="YELLOW"></div>
+                <div class="player-base" player-id="RED"></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <div class="dice-container" id="dice-btn">
+                    <div class="dice">
+                        <span class="dot one"></span>
+                        <span class="dot two"></span>
+                        <span class="dot three"></span>
+                        <span class="dot four"></span>
+                        <span class="dot five"></span>
+                        <span class="dot six"></span>
+                    </div>
+                </div>
+                <div class="dice-value"></div>
+                <button id="reset-btn" class="btn btn-reset">Reset</button>
+            </div>
+            
+            <h2 class="active-player">Active Player: <span></span> </h2>
+            <audio id="background-music" src="ludo/ludo bg music.mp3" autoplay loop muted></audio>
+        </div>
+    </div>
+    <script src="main.js" type="module"></script>
+    
+</body>
+</html>

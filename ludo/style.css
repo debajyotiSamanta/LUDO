@@ -24,6 +24,7 @@ header .heading h1 {
     letter-spacing: 1px;
     background: linear-gradient(90deg, #c80dc2,#18aa4b, #0c54db,#c80dc2, #116b14, #2196f3, #9c27b0);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientAnimation 5s infinite;
 }
@@ -148,7 +149,7 @@ body{
         transform: translate(50%, 50%) rotate(0deg);
     }
     50% {
-        transform: translate(50%, 50%) rotate(180deg) scale(1.4);
+        transform: translate(50%, 50%) rotate(180deg) scale(1.8);
     }
     100% {
         transform: translate(50%, 50%) rotate(360deg);
@@ -248,16 +249,78 @@ body{
     font-weight: bold;
     text-transform: uppercase;
 }
+.next {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    padding: 20px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#play-btn {
+    width: 160px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+#play-btn:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+#play-btn:active {
+    color: #000;
+}
+
+#play-btn:active:after {
+    background: transparent;
+}
+
+#play-btn:hover:before {
+    opacity: 1;
+}
+
+#play-btn:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
 
 #reset-btn{
     width: 160px;
     height: 50px;
     border: none;
     outline: none;
-    color: 
-#fff;
-    background: 
-#111;
+    color: #fff;
+    background: #111;
     cursor: pointer;
     position: relative;
     z-index: 0;
@@ -281,12 +344,10 @@ body{
 }
 
 #reset-btn:active {
-    color: 
-#000
+    color: #000
 }
 #reset-btn:active:after {
-    background: 
-transparent;
+    background: transparent;
 }
 
 #reset-btn:hover:before {
@@ -299,8 +360,7 @@ transparent;
     position: absolute;
     width: 100%;
     height: 100%;
-    background: 
-#111;
+    background: #111;
     left: 0;
     top: 0;
     border-radius: 10px;
