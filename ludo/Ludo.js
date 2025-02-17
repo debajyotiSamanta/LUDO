@@ -54,12 +54,30 @@ export class Ludo {
         UI.listenDiceClick(this.onDiceClick.bind(this));
     }
 
-    onDiceClick() {
-        // console.log('Dice clicked!');
+    // onDiceClick() {
+    //     // console.log('Dice clicked!');
+    //     this.diceValue = 1 + Math.floor(Math.random() * 6);
+    //     console.log(`Dice value rolled: ${this.diceValue}`);
+    //     this.state = STATE.DICE_ROLLED;
+    //     this.checkForEligiblePieces();
+    // }
+
+    // onDiceClick() {
+    //     return new Promise((resolve) => {
+    //         this.diceValue = 1 + Math.floor(Math.random() * 6);
+    //         console.log(`Dice value rolled: ${this.diceValue}`);
+    //         this.state = STATE.DICE_ROLLED;
+    //         this.checkForEligiblePieces();
+    //         resolve();
+    //     });
+    // }
+
+    async onDiceClick() {
         this.diceValue = 1 + Math.floor(Math.random() * 6);
         console.log(`Dice value rolled: ${this.diceValue}`);
         this.state = STATE.DICE_ROLLED;
         this.checkForEligiblePieces();
+        return this.diceValue; 
     }
 
     checkForEligiblePieces() {
@@ -229,17 +247,19 @@ export class Ludo {
     }
 }
 
-document.getElementById("dice-btn").addEventListener("click", function() {
+const ludoGame = new Ludo();
+
+document.getElementById("dice-btn").addEventListener("click", async function() {
     const dice = document.querySelector(".dice");
     
-    // Generate a random number between 1 and 6
+    // the shown dice value should be same as the rolled value
     // const diceValue = Math.floor(Math.random() * 6) + 1;
-    const diceValue = this.diceValue;
-
+    const diceValue = await ludoGame.onDiceClick(); 
+    
     // Remove previous class and add new class for animation
     dice.classList.remove("roll");
     void dice.offsetWidth; // Trick to restart animation
-    dice.classList.add("roll");
+    dice.classList.add("roll"); 
 
     // Update the dice face
     dice.setAttribute("data-roll", diceValue);
