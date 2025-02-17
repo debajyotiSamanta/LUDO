@@ -55,7 +55,7 @@ export class Ludo {
     }
 
     onDiceClick() {
-        console.log('Dice clicked!');
+        // console.log('Dice clicked!');
         this.diceValue = 1 + Math.floor(Math.random() * 6);
         console.log(`Dice value rolled: ${this.diceValue}`);
         this.state = STATE.DICE_ROLLED;
@@ -233,7 +233,8 @@ document.getElementById("dice-btn").addEventListener("click", function() {
     const dice = document.querySelector(".dice");
     
     // Generate a random number between 1 and 6
-    const diceValue = Math.floor(Math.random() * 6) + 1;
+    // const diceValue = Math.floor(Math.random() * 6) + 1;
+    const diceValue = this.diceValue;
 
     // Remove previous class and add new class for animation
     dice.classList.remove("roll");

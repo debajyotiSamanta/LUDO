@@ -274,7 +274,7 @@ body{
 
 #play-btn:before {
     content: '';
-    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #00ffd5, #002bff, #7a00ff, #ff0000);
     position: absolute;
     top: -2px;
     left: -2px;
@@ -444,5 +444,19 @@ body{
 
 
 
-
-
+@media screen and (max-width: 480px) {
+    header .heading h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav .Rules {
+        width: 100%;
+        padding: 8px;
+        margin: 8px auto;
+    }
+    #play-btn, #reset-btn {
+        width: 120px;
+        height: 35px;
+        font-size: 10px;
+    }
+}
