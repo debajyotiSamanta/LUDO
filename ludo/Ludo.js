@@ -62,22 +62,14 @@ export class Ludo {
     //     this.checkForEligiblePieces();
     // }
 
-    // onDiceClick() {
-    //     return new Promise((resolve) => {
-    //         this.diceValue = 1 + Math.floor(Math.random() * 6);
-    //         console.log(`Dice value rolled: ${this.diceValue}`);
-    //         this.state = STATE.DICE_ROLLED;
-    //         this.checkForEligiblePieces();
-    //         resolve();
-    //     });
-    // }
-
-    async onDiceClick() {
-        this.diceValue = 1 + Math.floor(Math.random() * 6);
-        console.log(`Dice value rolled: ${this.diceValue}`);
-        this.state = STATE.DICE_ROLLED;
-        this.checkForEligiblePieces();
-        return this.diceValue; 
+    onDiceClick() {
+        return new Promise((resolve) => {
+            this.diceValue = 1 + Math.floor(Math.random() * 6);
+            console.log(`Dice value rolled: ${this.diceValue}`);
+            this.state = STATE.DICE_ROLLED;
+            this.checkForEligiblePieces();
+            resolve();
+        });
     }
 
     checkForEligiblePieces() {
@@ -252,9 +244,9 @@ const ludoGame = new Ludo();
 document.getElementById("dice-btn").addEventListener("click", async function() {
     const dice = document.querySelector(".dice");
     
-    // the shown dice value should be same as the rolled value
-    // const diceValue = Math.floor(Math.random() * 6) + 1;
-    const diceValue = await ludoGame.onDiceClick(); 
+    // the shown dice value should be same as the rolled value but not showing same
+    await ludoGame.onDiceClick();
+    const diceValue = ludoGame.diceValue; 
     
     // Remove previous class and add new class for animation
     dice.classList.remove("roll");
