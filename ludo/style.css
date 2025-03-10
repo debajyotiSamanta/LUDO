@@ -403,32 +403,38 @@ body{
     position: absolute;
 }
 
-.dice[data-roll="1"] .dot { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.dice[data-roll="1"] .dot { display: none; }
+.dice[data-roll="1"] .dot.one { display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-.dice[data-roll="2"] .dot:nth-child(1) { top: 20%; left: 20%; }
-.dice[data-roll="2"] .dot:nth-child(2) { bottom: 20%; right: 20%; }
+.dice[data-roll="2"] .dot { display: none; }
+.dice[data-roll="2"] .dot.one { display: block; top: 20%; left: 20%; }
+.dice[data-roll="2"] .dot.two { display: block; bottom: 20%; right: 20%; }
 
-.dice[data-roll="3"] .dot:nth-child(1) { top: 20%; left: 20%; }
-.dice[data-roll="3"] .dot:nth-child(2) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.dice[data-roll="3"] .dot:nth-child(3) { bottom: 20%; right: 20%; }
+.dice[data-roll="3"] .dot { display: none; }
+.dice[data-roll="3"] .dot.one { display: block; top: 20%; left: 20%; }
+.dice[data-roll="3"] .dot.two { display: block; bottom: 20%; right: 20%; }
+.dice[data-roll="3"] .dot.three { display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-.dice[data-roll="4"] .dot:nth-child(1) { top: 20%; left: 20%; }
-.dice[data-roll="4"] .dot:nth-child(2) { top: 20%; right: 20%; }
-.dice[data-roll="4"] .dot:nth-child(3) { bottom: 20%; left: 20%; }
-.dice[data-roll="4"] .dot:nth-child(4) { bottom: 20%; right: 20%; }
+.dice[data-roll="4"] .dot { display: none; }
+.dice[data-roll="4"] .dot.one { display: block; top: 20%; left: 20%; }
+.dice[data-roll="4"] .dot.two { display: block; top: 20%; right: 20%; }
+.dice[data-roll="4"] .dot.three { display: block; bottom: 20%; left: 20%; }
+.dice[data-roll="4"] .dot.four { display: block; bottom: 20%; right: 20%; }
 
-.dice[data-roll="5"] .dot:nth-child(1) { top: 20%; left: 20%; }
-.dice[data-roll="5"] .dot:nth-child(2) { top: 20%; right: 20%; }
-.dice[data-roll="5"] .dot:nth-child(3) { bottom: 20%; left: 20%; }
-.dice[data-roll="5"] .dot:nth-child(4) { bottom: 20%; right: 20%; }
-.dice[data-roll="5"] .dot:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.dice[data-roll="5"] .dot { display: none; }
+.dice[data-roll="5"] .dot.one { display: block; top: 20%; left: 20%; }
+.dice[data-roll="5"] .dot.two { display: block; top: 20%; right: 20%; }
+.dice[data-roll="5"] .dot.three { display: block; bottom: 20%; left: 20%; }
+.dice[data-roll="5"] .dot.four { display: block; bottom: 20%; right: 20%; }
+.dice[data-roll="5"] .dot.five { display: block; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-.dice[data-roll="6"] .dot:nth-child(1) { top: 15%; left: 15%; }
-.dice[data-roll="6"] .dot:nth-child(2) { top: 15%; right: 15%; }
-.dice[data-roll="6"] .dot:nth-child(3) { bottom: 15%; left: 15%; }
-.dice[data-roll="6"] .dot:nth-child(4) { bottom: 15%; right: 15%; }
-.dice[data-roll="6"] .dot:nth-child(5) { top: 50%; left: 15%; transform: translateY(-50%); }
-.dice[data-roll="6"] .dot:nth-child(6) { top: 50%; right: 15%; transform: translateY(-50%); }
+.dice[data-roll="6"] .dot { display: none; }
+.dice[data-roll="6"] .dot.one { display: block; top: 15%; left: 15%; }
+.dice[data-roll="6"] .dot.two { display: block; top: 15%; right: 15%; }
+.dice[data-roll="6"] .dot.three { display: block; bottom: 15%; left: 15%; }
+.dice[data-roll="6"] .dot.four { display: block; bottom: 15%; right: 15%; }
+.dice[data-roll="6"] .dot.five { display: block; top: 50%; left: 15%; transform: translateY(-50%); }
+.dice[data-roll="6"] .dot.six { display: block; top: 50%; right: 15%; transform: translateY(-50%); }
 
 .roll {
     animation: rollAnimation 0.5s ease-in-out;

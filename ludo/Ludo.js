@@ -58,8 +58,18 @@ export class Ludo {
         console.log('Dice clicked!');
         this.diceValue = 1 + Math.floor(Math.random() * 6);
         console.log(`Dice value rolled: ${this.diceValue}`);
+        this.updateDiceFace(this.diceValue);
         this.state = STATE.DICE_ROLLED;
         this.checkForEligiblePieces();
+    }
+
+    updateDiceFace(diceValue) {
+        const dice = document.querySelector(".dice");
+        dice.classList.remove("roll");
+        void dice.offsetWidth; // Trick to restart animation
+        dice.classList.add("roll");
+        dice.setAttribute("data-roll", diceValue);
+        document.querySelector(".dice-value").textContent = `Rolled: ${diceValue}`;
     }
 
     checkForEligiblePieces() {
