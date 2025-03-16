@@ -101,13 +101,3 @@ export class UI {
         document.querySelector('.dice-value').innerText = value;
     }
 }
-
-// Example usage for testing
-// UI.setPiecePosition('BLUE', 0, 0);
-// UI.setTurn(0);
-// UI.setTurn(1);
-// UI.disableDice();
-// UI.enableDice();
-// UI.highlightPieces('BLUE', [0]);
-// UI.unhighlightPieces();
-// UI.setDiceValue(5);

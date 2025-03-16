@@ -42,6 +42,8 @@ export class Ludo {
         }
     }
 
+    _diceClickBlocked = false;
+
     constructor() {
         console.log('Hello World! Let\'s play Ludo!');
         this.listenDiceClick();
@@ -55,11 +57,17 @@ export class Ludo {
     }
 
     onDiceClick() {
+        if (this._diceClickBlocked) {
+            console.log('Dice click is blocked until a move is made.');
+            return;
+        }
+
         console.log('Dice clicked!');
         this.diceValue = 1 + Math.floor(Math.random() * 6);
         console.log(`Dice value rolled: ${this.diceValue}`);
         this.updateDiceFace(this.diceValue);
         this.state = STATE.DICE_ROLLED;
+
         this.checkForEligiblePieces();
     }
 
@@ -78,6 +86,8 @@ export class Ludo {
         console.log(`Eligible pieces for player ${player}:`, eligiblePieces);
         if (eligiblePieces.length) {
             UI.highlightPieces(player, eligiblePieces);
+            this._diceClickBlocked = true;
+            UI.disableDice();
         } else {
             this.incrementTurn();
         }
@@ -155,11 +165,15 @@ export class Ludo {
         if (BASE_POSITIONS[player].includes(currentPosition)) {
             this.setPiecePosition(player, piece, START_POSITIONS[player]);
             this.state = STATE.DICE_NOT_ROLLED;
+            this._diceClickBlocked = false;
+            UI.enableDice();
             return;
         }
 
         UI.unhighlightPieces();
         this.movePiece(player, piece, this.diceValue);
+        this._diceClickBlocked = false;
+        UI.enableDice();
     }
 
     setPiecePosition(player, piece, newPosition) {
@@ -238,22 +252,3 @@ export class Ludo {
         return currentPosition + 1;
     }
 }
-
-document.getElementById("dice-btn").addEventListener("click", function() {
-    const dice = document.querySelector(".dice");
-    
-    // Generate a random number between 1 and 6
-    // const diceValue = Math.floor(Math.random() * 6) + 1;
-    const diceValue = this.diceValue;
-
-    // Remove previous class and add new class for animation
-    dice.classList.remove("roll");
-    void dice.offsetWidth; // Trick to restart animation
-    dice.classList.add("roll");
-
-    // Update the dice face
-    dice.setAttribute("data-roll", diceValue);
-
-    // Show rolled value
-    document.querySelector(".dice-value").textContent = `Rolled: ${diceValue}`;
-});
