@@ -447,7 +447,13 @@ body{
     100% { transform: rotate(360deg); }
 }
 
-
+.footer__copy{
+    text-align: center;
+    display: block;
+    padding-bottom: .5rem;
+    /* margin-top: 20px; */
+    color: #777;
+}
 
 
 @media screen and (max-width: 480px) {
@@ -466,3 +472,4 @@ body{
         font-size: 10px;
     }
 }
+
