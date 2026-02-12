@@ -1,6 +1,8 @@
 import { BASE_POSITIONS, HOME_ENTRANCE, HOME_POSITIONS, PLAYERS, SAFE_POSITIONS, START_POSITIONS, STATE, TURNING_POINTS } from './constants.js';
 import { UI } from './UI.js';
 
+const AUDIO_SETTINGS_KEY = 'ludo:audio-settings';
+
 export class Ludo {
     currentPositions = {
         BLUE: [],
@@ -43,6 +45,7 @@ export class Ludo {
     }
 
     _diceClickBlocked = false;
+    _audioContext = null;
 
     constructor() {
         console.log('Hello World! Let\'s play Ludo!');
@@ -50,6 +53,100 @@ export class Ludo {
         this.listenResetClick();
         this.listenPieceClick();
         this.resetGame();
+    }
+
+    getSfxConfig() {
+        const defaultConfig = { sfxVolume: 78 };
+
+        try {
+            const raw = localStorage.getItem(AUDIO_SETTINGS_KEY);
+            if (!raw) return defaultConfig;
+
+            const parsed = JSON.parse(raw);
+            const fallbackVolume = Number(parsed?.volume);
+            const candidate = Number(parsed?.sfxVolume);
+            const normalized = Number.isFinite(candidate)
+                ? candidate
+                : (Number.isFinite(fallbackVolume) ? fallbackVolume : defaultConfig.sfxVolume);
+            const sfxVolume = Math.max(0, Math.min(100, normalized));
+            return { sfxVolume };
+        } catch {
+            return defaultConfig;
+        }
+    }
+
+    getAudioContext() {
+        if (typeof window === 'undefined') return null;
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return null;
+
+        if (!this._audioContext) {
+            this._audioContext = new AudioContextClass();
+        }
+
+        if (this._audioContext.state === 'suspended') {
+            this._audioContext.resume().catch(() => {
+                // Ignore resume failures; next user interaction can retry.
+            });
+        }
+
+        return this._audioContext;
+    }
+
+    playDiceRollSound() {
+        const config = this.getSfxConfig();
+        if (config.sfxVolume <= 0) return;
+
+        const context = this.getAudioContext();
+        if (!context) return;
+
+        const now = context.currentTime;
+        const gainLevel = 0.26 * (config.sfxVolume / 100);
+
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+
+        oscillator.type = 'square';
+        oscillator.frequency.setValueAtTime(420, now);
+        oscillator.frequency.exponentialRampToValueAtTime(120, now + 0.24);
+
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.exponentialRampToValueAtTime(gainLevel, now + 0.02);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.26);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + 0.27);
+    }
+
+    playMovementSound() {
+        const config = this.getSfxConfig();
+        if (config.sfxVolume <= 0) return;
+
+        const context = this.getAudioContext();
+        if (!context) return;
+
+        const now = context.currentTime;
+        const gainLevel = 0.14 * (config.sfxVolume / 100);
+
+        const oscillator = context.createOscillator();
+        const gainNode = context.createGain();
+
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(360, now);
+        oscillator.frequency.exponentialRampToValueAtTime(180, now + 0.08);
+
+        gainNode.gain.setValueAtTime(0.0001, now);
+        gainNode.gain.exponentialRampToValueAtTime(gainLevel, now + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.09);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(context.destination);
+
+        oscillator.start(now);
+        oscillator.stop(now + 0.1);
     }
 
     listenDiceClick() {
@@ -64,6 +161,7 @@ export class Ludo {
 
         console.log('Dice clicked!');
         this.diceValue = 1 + Math.floor(Math.random() * 6);
+        this.playDiceRollSound();
         console.log(`Dice value rolled: ${this.diceValue}`);
         this.updateDiceFace(this.diceValue);
         this.state = STATE.DICE_ROLLED;
@@ -164,6 +262,7 @@ export class Ludo {
 
         if (BASE_POSITIONS[player].includes(currentPosition)) {
             this.setPiecePosition(player, piece, START_POSITIONS[player]);
+            this.playMovementSound();
             this.state = STATE.DICE_NOT_ROLLED;
             this._diceClickBlocked = false;
             UI.enableDice();
@@ -185,6 +284,7 @@ export class Ludo {
     movePiece(player, piece, moveBy) {
         const interval = setInterval(() => {
             this.incrementPiecePosition(player, piece);
+            this.playMovementSound();
             moveBy--;
 
             console.log(`Piece ${piece} for player ${player} moved by 1 step. Moves remaining: ${moveBy}`);

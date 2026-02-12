@@ -1,39 +1,77 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎲Ludo Multiplayer Game</title>
+    <title>Ludo 3D Lobby</title>
     <link rel="stylesheet" href="ludo/style.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="heading">
-                <h1>Welcome to Ludo Multiplayer Game</h1>
+<body class="menu-page">
+    <div class="lobby-scene" id="lobby-scene">
+        <div class="panorama" aria-hidden="true">
+            <div class="panorama-layer panorama-back"></div>
+            <div class="panorama-layer panorama-mid"></div>
+            <div class="panorama-layer panorama-front"></div>
+            <div class="panorama-vignette"></div>
+        </div>
+
+        <main class="lobby-panel">
+            <p class="status-pill">Ludo Lobby</p>
+            <h1>Multiplayer Launch Room</h1>
+            <p class="lobby-subtitle">Roam In The Room While You Wait.</p>
+
+            <section class="loading-screen" aria-live="polite">
+                <div class="loading-meta">
+                    <span id="loading-label">Loading Game...</span>
+                    <span id="loading-percent">0%</span>
+                </div>
+                <div class="loading-track">
+                    <div class="loading-fill" id="loading-fill"></div>
+                </div>
+            </section>
+
+            <div class="menu-actions">
+                <a class="menu-btn menu-btn-primary is-disabled" id="play-link" href="./ludo.html" aria-disabled="true">Play</a>
+                <button class="menu-btn menu-btn-ghost" id="toggle-settings" type="button" aria-expanded="false" aria-controls="settings-panel">Settings</button>
+                <button class="menu-btn menu-btn-ghost" id="toggle-rules" type="button" aria-expanded="false" aria-controls="rules-panel">Rules</button>
             </div>
-            <div class="Rules">
-                <h3>: Basic Ludo Rules :</h3>
-                <p>1.Objective: Move all 4 pieces from your starting area to the home. <br>
-                   2.Starting: <br>
-                   (a) Roll a 6 to move a piece out of the home area. <br>
-                   (b) Rolling a 6 gives an extra turn. <br>
-                   3.Movement: <br>
-                   (a) Pieces move clockwise based on dice rolls. <br>
-                   (b) Land on an opponent’s piece to send it back to their home. <br>
-                   4.Safe Positions: Star-marked positions and starting starting are safe zones where pieces cannot be captured. <br>
-                   5.Entering Home: Pieces must complete a circuit and enter the home triangle with an exact roll. <br>
-                   6.Winning: First to get all 4 Pieces home wins.
-                </p>
-            </div>
-        </nav>
-        <a href="./ludo.html"><button id="play-btn" class="next">LET'S PLAY</button></a>
-    </header>
-    <span class="footer__copy">
-        &#169; 2024 Debajyoti Samanta. All right reserved.
-    </span>
+
+            <section class="drawer-panel" id="settings-panel" hidden>
+                <h2>Audio Settings</h2>
+                <label for="music-volume">Music Volume</label>
+                <input id="music-volume" type="range" min="0" max="100" value="45">
+
+                <label for="sfx-volume">SFX Volume</label>
+                <input id="sfx-volume" type="range" min="0" max="100" value="78">
+
+                <label for="music-track">Music Selection</label>
+                <select id="music-track">
+                    <option value="mountain_king" selected>Mountain King (PD)</option>
+                    <option value="morning">Morning (PD)</option>
+                    <option value="bach_joy">Bach Joy (PD)</option>
+                    <option value="moldau">Moldau (PD)</option>
+                    <option value="new_world_largo">New World Largo (PD)</option>
+                    <option value="silent">Mute</option>
+                </select>
+            </section>
+
+            <section class="drawer-panel" id="rules-panel" hidden>
+                <h2>Quick Rules</h2>
+                <ol>
+                    <li>Roll a 6 to move a token out of base.</li>
+                    <li>Tokens move clockwise by the rolled value.</li>
+                    <li>Landing on an enemy token sends it back to base.</li>
+                    <li>Safe or star cells cannot be captured.</li>
+                    <li>Exact roll is required to enter home and win.</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+
+    <audio id="menu-music" src="https://upload.wikimedia.org/wikipedia/commons/b/bb/Musopen_-_In_the_Hall_Of_The_Mountain_King.ogg" preload="auto" loop></audio>
+    <span class="footer__copy">&#169; 2026 Debajyoti Samanta. All rights reserved.</span>
+
+    <script src="ludo/script.js"></script>
 </body>
-<script src="ludo/script.js"></script>
 </html>
