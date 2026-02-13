@@ -359,17 +359,20 @@ body {
 .game-page .player-piece {
     width: 3%;
     height: 3%;
-    border: 2px solid;
+    border: 2px solid #111;
     border-radius: 10px;
     position: absolute;
     transform: translate(50%, 50%);
     transition: all 0.2s;
     z-index: 1;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.85),
+        0 2px 4px rgba(0, 0, 0, 0.55);
 }
 
 .game-page .player-piece.highlight {
     cursor: pointer;
-    border: 2px dashed;
+    border: 2px dashed #111;
     animation: piece-spin 1s infinite linear;
 }
 
